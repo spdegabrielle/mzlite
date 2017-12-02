@@ -1,0 +1,24 @@
+_MzLite_
+_mzlite_
+
+This collection provides one file:
+
+ _mzlite.ss_: a minimal mzscheme language level.
+
+This library provides a DrScheme language level with minimal bindings
+from mzscheme, namely:
+
+    Special syntax identifiers: #%app #%top #%datum #%module-begin
+    Module forms: provide require
+
+This is useful for modules that wish to require only a subset of the
+identifiers typically provided by the mzscheme language. Extra
+mzscheme bindings can be required via the `all-except', `only', or
+`rename' forms of module requires.
+
+Typical usage:
+
+(module foo (planet "mzlite.ss" ("dherman" "mzlite.plt" 1))
+  (require (all-except mzscheme eval))
+  (define (eval x) #| ... |#)
+  ...)
